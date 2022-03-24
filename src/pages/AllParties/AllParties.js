@@ -6,9 +6,15 @@ const AllParties = () => {
     const [parties, setParties] = useState([]);
 
     useEffect(() => {
+        let isMounted = true;
         fetch('http://localhost:5000/parties')
             .then(res => res.json())
-            .then(data => setParties(data))
+            .then(data => {
+                if (isMounted) {
+                    setParties(data)
+                }
+            })
+        return () => { isMounted = false };
     }, [])
 
     return (

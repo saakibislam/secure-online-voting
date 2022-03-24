@@ -6,12 +6,16 @@ const RegisteredParties = () => {
     const [parties, setParties] = useState([]);
 
     useEffect(() => {
+        let isMounted = true;
         fetch('http://localhost:5000/parties')
             .then(res => res.json())
             .then(data => {
-                const registeredParties = data?.filter(party => party?.status == 'registered')
-                setParties(registeredParties);
+                if (isMounted) {
+                    const registeredParties = data?.filter(party => party?.status == 'registered')
+                    setParties(registeredParties);
+                }
             })
+        return () => { isMounted = false };
     }, [])
 
 

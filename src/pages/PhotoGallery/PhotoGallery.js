@@ -6,9 +6,15 @@ const PhotoGallery = () => {
     const [photos, setPhotos] = useState([])
 
     useEffect(() => {
+        let isMounted = true;
         fetch('http://localhost:5000/photos')
             .then(res => res.json())
-            .then(data => setPhotos(data))
+            .then(data => {
+                if (isMounted) {
+                    setPhotos(data)
+                }
+            })
+        return () => { isMounted = false };
     }, [])
 
     return (

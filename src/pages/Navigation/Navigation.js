@@ -1,8 +1,16 @@
-import React from 'react';
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { Container, Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Navigation = () => {
+    const { getUser, clearUser } = useAuth();
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        setUser(getUser());
+    }, [])
+
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
@@ -29,9 +37,24 @@ const Navigation = () => {
                     <Nav.Link as={Link} to="/photos">Photo Gallery</Nav.Link>
                     <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
                     <Nav.Link as={Link} to="/about">About</Nav.Link>
-
+                    {user?.name && <Nav.Link as={Link} to="/vote">Cast Vote</Nav.Link>}
                 </Nav>
 
+
+                {/* Login & Logout Button  */}
+
+                {user?.name ? <div>
+                    <Button
+                        onClick={clearUser}
+                        variant='outline-danger'
+                    >Logout</Button>
+                </div>
+                    :
+                    <Link to='/login'>
+                        <Button variant='outline-warning'>
+                            Login
+                        </Button>
+                    </Link>}
 
             </Container>
         </Navbar>

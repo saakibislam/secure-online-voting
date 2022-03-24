@@ -7,9 +7,15 @@ const PartyDetails = () => {
     const [party, setParty] = useState({});
 
     useEffect(() => {
+        let isMounted = true;
         fetch(`http://localhost:5000/party?requestedId=${id}`)
             .then(res => res.json())
-            .then(data => setParty(data))
+            .then(data => {
+                if (isMounted) {
+                    setParty(data)
+                }
+            })
+        return () => { isMounted = false };
     }, [id])
 
     return (
