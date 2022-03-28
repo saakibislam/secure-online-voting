@@ -14,6 +14,8 @@ import Contact from './pages/Contact/Contact';
 import About from './pages/About/About';
 import Homepage from './pages/Homepage/Homepage';
 import Login from './pages/Login/Login';
+import Vote from './pages/Vote/Vote';
+import CandidateDetails from './pages/CandidateDetails/CandidateDetails';
 
 function App() {
   return (
@@ -47,6 +49,12 @@ function App() {
           </Route>
           <Route path='/about'>
             <About></About>
+          </Route>
+          <Route path='/vote'>
+            <Vote></Vote>
+          </Route>
+          <Route path='/candidate/:id/'>
+            <CandidateDetails></CandidateDetails>
           </Route>
           <Route path='/login'>
             <Login></Login>

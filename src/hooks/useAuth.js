@@ -36,6 +36,7 @@ const useAuth = () => {
     // Removing User Data on Storage
     const clearUser = () => {
         localStorage.removeItem('user');
+        window.location.replace('/');
     }
 
 

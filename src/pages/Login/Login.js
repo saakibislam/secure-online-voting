@@ -11,6 +11,10 @@ const Login = () => {
         const nid = nidRef.current.value;
 
         fetchUser(nid);
+        // ---------------------- page reload after login
+        // setTimeout(() => {
+        //     window.location.replace('/')
+        // }, 1000);
     }
 
     return (
@@ -23,7 +27,7 @@ const Login = () => {
                     className="mb-3"
                 >
                     {/* NID Input Field  */}
-                    <Form.Control type="text" placeholder="Please enter your NID card number." ref={nidRef} required />
+                    <Form.Control type="text" placeholder="Please enter your NID card number." value='1111122222' ref={nidRef} required />
                     <Form.Text>Please enter your NID card number</Form.Text>
                 </FloatingLabel>
                 <input type="submit" value='Login' className='btn btn-lg btn-primary' />

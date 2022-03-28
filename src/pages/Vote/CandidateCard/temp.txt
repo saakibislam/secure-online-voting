@@ -1,0 +1,60 @@
+/* confirmation = window.confirm(`Are you sure to vote ${name}?`) {inside handleVote function}
+
+        if (confirmation) {
+            const voterData = {
+                candidateId: _id,
+                voterId: user._id
+            }
+
+            fetch('http://localhost:5000/vote', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(voterData)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data == 200) {
+                        fetchUser(user.nidNumber)
+                        setUser(getUser())
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1000);
+                    }
+                })
+
+        } */
+
+    inside Render method
+
+        // <Col>
+        //     <Card>
+        //         <Card.Img variant="top" src={img} style={{ borderRadius: '50%', margin: '0 auto', width: '200px', height: '200px' }} />
+        //         <Card.Body>
+        //             <Card.Title>{name}</Card.Title>
+        //             <Card.Text>
+        //                 <b>{party}</b>
+        //             </Card.Text>
+
+        //             <div className='d-flex flex-row justify-content-around'>
+
+        //                 {/* More Details Button  */}
+        //                 <Link to={`/candidate/${_id}`}>
+        //                     More
+        //                 </Link>
+
+        //                 {/* Confirming Vote Button  */}
+        //                 <Button
+        //                     size='md'
+        //                     variant='warning'
+        //                     className='fw-bold'
+        //                     onClick={handleVote}
+        //                     disabled={user?.voted}
+        //                 >
+        //                     Vote
+        //                 </Button>
+        //             </div>
+        //         </Card.Body>
+        //     </Card>
+        // </Col>
