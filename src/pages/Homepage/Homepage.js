@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import Slider from './Slider/Slider';
 
 const Homepage = () => {
     const { getUser } = useAuth();
@@ -11,8 +12,7 @@ const Homepage = () => {
 
     return (
         <div>
-            <h1>This is home</h1>
-            <h2>Welcome: {user?.name}</h2>
+            <Slider></Slider>
         </div>
     );
 };
