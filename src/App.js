@@ -16,6 +16,7 @@ import Homepage from './pages/Homepage/Homepage';
 import Login from './pages/Login/Login';
 import Vote from './pages/Vote/Vote';
 import CandidateDetails from './pages/CandidateDetails/CandidateDetails';
+import Footer from './pages/Footer/Footer';
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
             <NotFound></NotFound>
           </Route>
         </Switch>
+        <Footer></Footer>
       </BrowserRouter>
     </div>
   );
