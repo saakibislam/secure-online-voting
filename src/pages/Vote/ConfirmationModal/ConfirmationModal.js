@@ -29,7 +29,7 @@ const ConfirmationModal = ({ _id, user, setUser, name, show, handleClose }) => {
                     setUser(getUser())
                     setTimeout(() => {
                         window.location.reload()
-                    }, 1000);
+                    }, 2000);
 
                 }
             })

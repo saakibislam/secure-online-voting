@@ -17,6 +17,13 @@ import Login from './pages/Login/Login';
 import Vote from './pages/Vote/Vote';
 import CandidateDetails from './pages/CandidateDetails/CandidateDetails';
 import Footer from './pages/Footer/Footer';
+import News1 from './pages/News/OtherNews/News1';
+import News2 from './pages/News/OtherNews/News2';
+import News3 from './pages/News/OtherNews/News3';
+import News4 from './pages/News/OtherNews/News4';
+import News5 from './pages/News/OtherNews/News5';
+import News6 from './pages/News/OtherNews/News6';
+import Registration from './pages/Registration/Registration';
 
 function App() {
   return (
@@ -39,8 +46,29 @@ function App() {
           <Route path='/party/:id'>
             <PartyDetails></PartyDetails>
           </Route>
-          <Route path='/news'>
+          <Route path='/registration'>
+            <Registration></Registration>
+          </Route>
+          <Route exact path='/news'>
             <News></News>
+          </Route>
+          <Route path='/news/624c8fdd763d163aa1840cf8'>
+            <News1></News1>
+          </Route>
+          <Route path='/news/624c8ff64a395b0e6e75e212'>
+            <News2></News2>
+          </Route>
+          <Route path='/news/624c8ffdda43b727966bf7ab'>
+            <News3></News3>
+          </Route>
+          <Route path='/news/624c90036c74d4efb3cb6eb8'>
+            <News4></News4>
+          </Route>
+          <Route path='/news/624c900919df021ca7857c16'>
+            <News5></News5>
+          </Route>
+          <Route path='/news/624c900e0659aa731b2016a3'>
+            <News6></News6>
           </Route>
           <Route path='/photos'>
             <PhotoGallery></PhotoGallery>

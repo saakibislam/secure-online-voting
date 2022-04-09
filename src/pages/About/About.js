@@ -5,8 +5,8 @@ import ashikCover from '../../images/ashik.jpg';
 
 const About = () => {
     return (
-        <Container>
-            <h1>About us</h1>
+        <Container className='mt-3'>
+            <h2>About us</h2>
             <Container className='my-4'>
                 <Row className='align-items-center'>
                     <Col xs={12} md={6} lg={6}>

@@ -18,8 +18,8 @@ const AllParties = () => {
     }, [])
 
     return (
-        <Container>
-            <h1>All Political Parties</h1>
+        <Container className='mt-3'>
+            <h2>All Political Parties</h2>
             <Container>
                 <Row xs={1} md={2} lg={3} className='g-3'>
                     {

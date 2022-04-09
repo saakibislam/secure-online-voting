@@ -18,8 +18,8 @@ const PhotoGallery = () => {
     }, [])
 
     return (
-        <Container>
-            <h1>Recent Election Images</h1>
+        <Container className='mt-3'>
+            <h2>Recent Election Images</h2>
             <Container>
                 <Row xs={1} md={2} lg={4} className='g-3'>
                     {

@@ -19,7 +19,7 @@ const PartyDetails = () => {
     }, [id])
 
     return (
-        <Container>
+        <Container className='mt-2'>
             <div className='mb-5'>
                 <h2>{party?.name}</h2>
                 <h5>Leader: <i>{party?.leader}</i></h5>

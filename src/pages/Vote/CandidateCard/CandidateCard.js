@@ -36,7 +36,7 @@ const CandidateCard = (props) => {
 
                 <p className='text-success fw-bold'>{party}</p>
 
-                <div className='d-flex flex-row justify-content-around align-items-center mt-3'>
+                <div className='d-flex flex-row justify-content-around align-items-center'>
                     {/* More Details Button  */}
                     <Link to={`/candidate/${_id}`}>
                         More
@@ -51,21 +51,17 @@ const CandidateCard = (props) => {
                     >
                         Vote
                     </Button>
-
-                    <ConfirmationModal
-                        _id={_id}
-                        user={user}
-                        setUser={setUser}
-                        name={name}
-                        show={show}
-                        handleClose={handleClose}
-                    ></ConfirmationModal>
                 </div>
+                <ConfirmationModal
+                    _id={_id}
+                    user={user}
+                    setUser={setUser}
+                    name={name}
+                    show={show}
+                    handleClose={handleClose}
+                ></ConfirmationModal>
             </div>
         </div>
-
-
-
     );
 };
 

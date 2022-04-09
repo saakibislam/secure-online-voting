@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Navigation = () => {
@@ -10,8 +10,6 @@ const Navigation = () => {
     useEffect(() => {
         setUser(getUser());
     }, [])
-
-
 
     return (
         <Navbar expand="lg" bg="dark" variant="dark">
@@ -26,21 +24,14 @@ const Navigation = () => {
                             title="Political Parties"
                             menuVariant="dark"
                         >
-                            <NavDropdown.Item as={Link} to="/registered">Registered Parties</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/parties">All Political Parties</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/registered">Registered Parties</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/parties">All Political Parties</NavDropdown.Item>
                         </NavDropdown>
-                        <NavDropdown
-                            id="nav-dropdown-dark-example"
-                            title="Registration"
-                            menuVariant="dark"
-                        >
-                            <NavDropdown.Item as={Link} to="#action/3.1">Registration Process</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="#action/3.2">Registration Form</NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link as={Link} to="/news">News</Nav.Link>
-                        <Nav.Link as={Link} to="/photos">Photo Gallery</Nav.Link>
-                        <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
-                        <Nav.Link as={Link} to="/about">About</Nav.Link>
+                        <Nav.Link as={NavLink} to="/registration">Registration</Nav.Link>
+                        <Nav.Link as={NavLink} to="/news">News</Nav.Link>
+                        <Nav.Link as={NavLink} to="/photos">Photo Gallery</Nav.Link>
+                        <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
+                        <Nav.Link as={NavLink} to="/about">About</Nav.Link>
                         {user?.name && <Nav.Link as={Link} to="/vote">Cast Vote</Nav.Link>}
                     </Nav>
 
