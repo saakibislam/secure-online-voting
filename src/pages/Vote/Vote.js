@@ -26,6 +26,8 @@ const Vote = () => {
         <Container className='mt-3'>
             <h2>Vote Now</h2>
             <Swiper
+                data-aos="fade-up"
+                data-aos-duration="3000"
                 spaceBetween={15}
                 effect={"coverflow"}
                 grabCursor={true}

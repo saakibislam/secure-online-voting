@@ -24,8 +24,11 @@ import News4 from './pages/News/OtherNews/News4';
 import News5 from './pages/News/OtherNews/News5';
 import News6 from './pages/News/OtherNews/News6';
 import Registration from './pages/Registration/Registration';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
+  AOS.init();
   return (
     <div className="App">
       <BrowserRouter>
