@@ -8,8 +8,8 @@ const News3 = () => {
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXqd68i9nLCwc0zyAsonFWApNEtMFgDTKi0g" className='w-50' alt="" />
             </div>
             <div>
-                <h3>FEC approves three Notices of Disposition on petitions for rulemaking</h3>
-                <p style={{ textAlign: 'justify' }}>WASHINGTON – At its open meeting today, the Federal Election Commission approved three Notices of Disposition in connection with petitions for rulemaking.
+                <h3>FEC approves three Notices of Disposition on petitions for rule making</h3>
+                <p style={{ textAlign: 'justify' }}>WASHINGTON – At its open meeting today, the Federal Election Commission approved three Notices of Disposition in connection with petitions for rule making.
 
                     REG 2012-01 (Electioneering Communications Reporting) - Draft Notice of Disposition Prior to the meeting, on March 21, the Commission approved by tally vote the Notice of Disposition of a Petition for Rulemaking by the Center for Individual Freedom. The Commission decided not to initiate a rulemaking in response to the petition, which asked that the Commission revise two regulations on the reporting of electioneering communications, because the regulatory changes sought have already been implemented in a separate rulemaking.
                     <br />&nbsp;&nbsp;&nbsp;

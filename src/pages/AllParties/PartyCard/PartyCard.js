@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const PartyCard = (props) => {
     const { partySymbol, name, details, _id } = props.party;
     return (
-        <Col data-aos="zoom-in-right" data-aos-duration="1000">
+        <Col data-aos="zoom-out-left" data-aos-duration="1000">
             <Card>
                 <Card.Img variant="top" style={{ width: '150px', height: '150px', borderRadius: '50%', margin: '0px auto' }} src={partySymbol} />
                 <Card.Body>
