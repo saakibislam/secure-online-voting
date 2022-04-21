@@ -36,11 +36,15 @@ const CountdownTimer = () => {
     }
 
     useEffect(() => {
-        startTimer();
+        let isMounted = true;
+        if (isMounted) {
+            startTimer();
+        }
         return () => {
+            isMounted = false;
             clearInterval(interval.current);
         }
-    })
+    }, [])
 
     return (
         <div style={{ backgroundColor: 'teal', color: 'white', padding: '4em 0' }}>

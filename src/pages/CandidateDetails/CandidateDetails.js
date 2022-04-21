@@ -14,19 +14,19 @@ const CandidateDetails = () => {
     }, [id])
 
     return (
-        <Container>
-            <h2>Candidate of {candidate.party}</h2>
+        <Container className='my-3'>
+            <h2 className='mb-3'>Candidate of {candidate.party}</h2>
 
             <Row>
                 <Col xs={12} md={6} lg={6}>
-                    <div>
+                    <div data-aos="fade-down" data-aos-duration="2000">
                         <img src={candidate.img} className='img-fluid rounded' alt='' />
                     </div>
 
                 </Col>
 
                 <Col xs={12} md={6} lg={6}>
-                    <div>
+                    <div data-aos="fade-left" data-aos-duration="2000">
                         <h2>{candidate.name}</h2>
                         <ul className='list-group text-start'>
                             <li className='list-group-item'>Father: {candidate.fatherName}</li>

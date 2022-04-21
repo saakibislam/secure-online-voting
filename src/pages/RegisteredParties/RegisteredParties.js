@@ -20,7 +20,7 @@ const RegisteredParties = () => {
 
 
     return (
-        <Container className='mt-3'>
+        <Container className='my-3'>
             <h2>Registered Parties</h2>
             <Row xs={1} md={2} lg={3} className='g-3'>
                 {

@@ -10,7 +10,7 @@ const Homepage = () => {
 
     useEffect(() => {
         setUser(getUser());
-    })
+    }, [])
 
     return (
         <div>

@@ -9,7 +9,7 @@ const style = {
 }
 const News = () => {
     return (
-        <Container className='mt-3'>
+        <Container className='my-3'>
             <h2>Recent News</h2>
             <Container>
                 <ListGroup className='text-start' as="ol" numbered>

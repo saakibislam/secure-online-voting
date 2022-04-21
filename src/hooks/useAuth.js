@@ -1,8 +1,11 @@
+import { useState } from "react";
 
 const useAuth = () => {
+    const [isLoading, setIsLoading] = useState(false);
 
     // Fetching User from DB
     const fetchUser = (nid) => {
+        setIsLoading(true);
         const url = `http://localhost:5000/login?nid=${nid}`;
 
         fetch(url)
@@ -11,6 +14,12 @@ const useAuth = () => {
                 if (data != null) {
                     updateUserOnStorage(data);
                 }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }
 
@@ -25,7 +34,6 @@ const useAuth = () => {
         const foundUser = getUser(); // check if any user exist in storage
 
         if (foundUser) {
-            // TODO replace user on localStorage
             localStorage.setItem('user', JSON.stringify(data));
         }
         else {
@@ -45,7 +53,9 @@ const useAuth = () => {
         fetchUser,
         getUser,
         updateUserOnStorage,
-        clearUser
+        clearUser,
+        isLoading,
+        setIsLoading
     }
 }
 

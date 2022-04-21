@@ -10,9 +10,9 @@ const Footer = () => {
                     <Col>
                         <div className='my-5'>
                             <h2>Logo Here</h2>
-                            <i class="fab fa-facebook fa-lg m-3"></i>
-                            <i class="fab fa-twitter fa-lg m-3"></i>
-                            <i class="fab fa-youtube fa-lg m-3"></i>
+                            <i className="fab fa-facebook fa-lg m-3"></i>
+                            <i className="fab fa-twitter fa-lg m-3"></i>
+                            <i className="fab fa-youtube fa-lg m-3"></i>
                         </div>
                     </Col>
                     <Col>
