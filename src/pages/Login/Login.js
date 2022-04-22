@@ -10,11 +10,7 @@ const Login = () => {
         e.preventDefault();
         const nid = nidRef.current.value;
 
-        fetchUser(nid);
-        // ---------------------- page reload after login
-        // setTimeout(() => {
-        //     window.location.replace('/')
-        // }, 1000);
+        fetchUser(nid)
     }
 
     return (

@@ -6,10 +6,7 @@ const ConfirmationModal = ({ _id, user, setUser, name, show, handleClose }) => {
     const { fetchUser, getUser } = useAuth();
     const [confirmation, setConfirmation] = useState(false)
 
-
-
     if (confirmation) {
-
         const voterData = {
             candidateId: _id,
             voterId: user._id
@@ -24,16 +21,12 @@ const ConfirmationModal = ({ _id, user, setUser, name, show, handleClose }) => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data == 200) {
+                if (data === 200) {
                     fetchUser(user.nidNumber)
                     setUser(getUser())
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 2000);
-
+                    setConfirmation(false)
                 }
             })
-
     }
 
     return (

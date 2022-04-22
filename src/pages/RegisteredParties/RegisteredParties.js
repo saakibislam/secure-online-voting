@@ -11,7 +11,7 @@ const RegisteredParties = () => {
             .then(res => res.json())
             .then(data => {
                 if (isMounted) {
-                    const registeredParties = data?.filter(party => party?.status == 'registered')
+                    const registeredParties = data?.filter(party => party?.status === 'registered')
                     setParties(registeredParties);
                 }
             })

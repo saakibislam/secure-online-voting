@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Container, Row, Button } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import NewsCard1 from './NewsCard1';
 import NewsCard2 from './NewsCard2';
 import NewsCard3 from './NewsCard3';

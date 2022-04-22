@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
 import classes from './CandidateCard.module.css';
+import CountUp from 'react-countup';
 
 const CandidateCard = (props) => {
-    const { name, img, party, _id } = props.candidate;
+    const { name, img, party, _id, voteCount } = props.candidate;
 
     const [user, setUser] = useState();
 
@@ -30,11 +31,12 @@ const CandidateCard = (props) => {
 
     return (
         <div className={classes.card}>
-            <img src={img} className='mt-2 rounded' alt="" />
+            <img src={img} alt="" />
             <div className={classes.cardBody}>
                 <h2>{name}</h2>
 
                 <p className='text-success fw-bold'>{party}</p>
+                <p>Vote received: <CountUp className='text-success fw-bold' end={voteCount} start={0} duration={3} separator=","></CountUp></p>
 
                 <div className='d-flex flex-row justify-content-around align-items-center'>
                     {/* More Details Button  */}

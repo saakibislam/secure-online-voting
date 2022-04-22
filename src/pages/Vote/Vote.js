@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Spinner } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import CandidateCard from './CandidateCard/CandidateCard';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
@@ -17,12 +17,18 @@ const Vote = () => {
     useEffect(() => {
         fetch('http://localhost:5000/candidates')
             .then(res => res.json())
-            .then(data => setCandidates(data));
+            .then(data => setCandidates(data))
     }, [])
 
     return (
         <Container className='mt-3'>
             <h2>Vote Now</h2>
+
+            {/* Alert Box  */}
+
+
+
+
             <Swiper
                 data-aos="fade-up"
                 data-aos-duration="3000"

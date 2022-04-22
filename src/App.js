@@ -26,6 +26,7 @@ import News6 from './pages/News/OtherNews/News6';
 import Registration from './pages/Registration/Registration';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Result from './pages/Result/Result';
 
 function App() {
   AOS.init();
@@ -84,6 +85,9 @@ function App() {
           </Route>
           <Route path='/vote'>
             <Vote></Vote>
+          </Route>
+          <Route path='/result'>
+            <Result></Result>
           </Route>
           <Route path='/candidate/:id/'>
             <CandidateDetails></CandidateDetails>

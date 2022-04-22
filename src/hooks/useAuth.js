@@ -20,6 +20,7 @@ const useAuth = () => {
             })
             .finally(() => {
                 setIsLoading(false);
+                window.location.replace('/vote')
             })
     }
 
