@@ -25,7 +25,7 @@ const CandidateCard = (props) => {
     }, [])
 
     const handleVote = () => {
-        handleShow();
+        handleShow()
     }
 
 

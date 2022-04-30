@@ -1,11 +1,50 @@
-import React from 'react';
-import { Container } from 'react-bootstrap';
+import React, { useState, useEffect, Suspense } from 'react';
+import { Container, Col, Row, Spinner } from 'react-bootstrap';
+import BarChart from './BarChart/BarChart';
+import DoughnutChart from './DoughnutChart/DoughnutChart';
+import VoteCard from './VoteCard/VoteCard';
+
 
 const Result = () => {
+    const [candidates, setCandidates] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/candidates')
+            .then(res => res.json())
+            .then(data => {
+                setCandidates(data)
+            })
+            .catch((error) => console.log(error))
+            .finally(() => setIsLoading(false))
+    }, [])
+
+
     return (
         <Container className="my-3">
             <h2>Result will be published in 5 hours</h2>
-        </Container>
+
+            {isLoading ?
+                <Spinner animation="border" variant="danger" style={{ width: '5em', height: '5em' }} ></Spinner>
+                : <>
+                    <Row className='my-3'>
+                        {candidates.map(candidate => <VoteCard
+                            key={candidate._id}
+                            candidate={candidate}
+                        ></VoteCard>)}
+                    </Row>
+                    <Row md={1} lg={2} className="my-3 align-items-center">
+                        <Col>
+                            <BarChart candidates={candidates}></BarChart>
+                        </Col>
+                        <Col>
+                            <DoughnutChart></DoughnutChart>
+                        </Col>
+                    </Row>
+                </>
+            }
+
+        </Container >
     );
 };
 

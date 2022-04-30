@@ -14,6 +14,7 @@ const AllParties = () => {
                     setParties(data)
                 }
             })
+            .catch((error) => console.log(error))
         return () => { isMounted = false };
     }, [])
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, ProgressBar } from 'react-bootstrap';
 import CandidateCard from './CandidateCard/CandidateCard';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
@@ -14,19 +14,19 @@ import "./Vote.css";
 const Vote = () => {
     const [candidates, setCandidates] = useState([]);
 
+
     useEffect(() => {
         fetch('http://localhost:5000/candidates')
             .then(res => res.json())
             .then(data => setCandidates(data))
+            .catch((error) => console.log(error))
     }, [])
 
     return (
-        <Container className='mt-3'>
+        <Container className='my-3'>
             <h2>Vote Now</h2>
 
             {/* Alert Box  */}
-
-
 
 
             <Swiper
