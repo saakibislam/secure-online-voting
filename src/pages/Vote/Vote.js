@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, ProgressBar } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 import CandidateCard from './CandidateCard/CandidateCard';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper";

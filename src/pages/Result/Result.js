@@ -1,6 +1,7 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Col, Row, Spinner } from 'react-bootstrap';
 import BarChart from './BarChart/BarChart';
+import CountdownClock from './CountdownClock/CountdownClock';
 import DoughnutChart from './DoughnutChart/DoughnutChart';
 import VoteCard from './VoteCard/VoteCard';
 
@@ -22,7 +23,7 @@ const Result = () => {
 
     return (
         <Container className="my-3">
-            <h2>Result will be published in 5 hours</h2>
+            <CountdownClock></CountdownClock>
 
             {isLoading ?
                 <Spinner animation="border" variant="danger" style={{ width: '5em', height: '5em' }} ></Spinner>

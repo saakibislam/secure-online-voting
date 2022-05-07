@@ -1,0 +1,12 @@
+.feedback-area {
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    opacity: 0.9;
+    background-color: #ba1c24;
+    background-image: url("https://metropolitanhost.com/themes/themeforest/html/vitto/assets/img/footer-bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

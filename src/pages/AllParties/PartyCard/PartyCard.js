@@ -12,7 +12,7 @@ const PartyCard = (props) => {
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
                         <small>
-                            {details?.slice(0, 120)}
+                            {details?.slice(0, 110)}
                         </small>
                     </Card.Text>
                     <Link to={`/party/${_id}`}>

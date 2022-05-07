@@ -25,6 +25,9 @@ const ConfirmationModal = ({ _id, user, setUser, name, show, handleClose }) => {
                     fetchUser(user.nidNumber)
                     setUser(getUser())
                     setConfirmation(false)
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
                 }
             })
     }

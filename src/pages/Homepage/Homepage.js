@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import CountdownTimer from './CountdownTimer/CountdownTimer';
+import Feedback from './Feedback/Feedback';
 import NewsSection from './NewsSection/NewsSection';
+import PhotoSection from './PhotoSection/PhotoSection';
 import Slider from './Slider/Slider';
 
 const Homepage = () => {
@@ -15,8 +17,10 @@ const Homepage = () => {
     return (
         <div>
             <Slider></Slider>
-            <NewsSection></NewsSection>
             <CountdownTimer></CountdownTimer>
+            <NewsSection></NewsSection>
+            <PhotoSection></PhotoSection>
+            <Feedback></Feedback>
         </div>
     );
 };

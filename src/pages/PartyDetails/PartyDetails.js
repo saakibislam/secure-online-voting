@@ -40,6 +40,7 @@ const PartyDetails = () => {
                             {
                                 party?.knownFaces?.map(face => <div
                                     className='d-flex flex-row align-items-center m-2'
+                                    key={face.Name}
                                 // FIXME require a unique key
                                 >
                                     <div className='me-2'>

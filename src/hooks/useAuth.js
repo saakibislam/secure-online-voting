@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const useAuth = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isInvalid, setIsInvalid] = useState(false);
 
     // Fetching User from DB
     const fetchUser = (nid) => {
@@ -20,7 +21,28 @@ const useAuth = () => {
             })
             .finally(() => {
                 setIsLoading(false);
-                window.location.replace('/vote')
+            })
+    }
+    const loginWithNid = (nid) => {
+        setIsLoading(true);
+        const url = `http://localhost:5000/login?nid=${nid}`;
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                if (data != null) {
+                    updateUserOnStorage(data);
+                    window.location.replace("http://localhost:8989/")
+                    setIsInvalid(false)
+                } else {
+                    setIsInvalid(true);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }
 
@@ -56,7 +78,9 @@ const useAuth = () => {
         updateUserOnStorage,
         clearUser,
         isLoading,
-        setIsLoading
+        setIsLoading,
+        loginWithNid,
+        isInvalid
     }
 }
 

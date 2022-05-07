@@ -34,7 +34,11 @@ const CandidateDetails = () => {
                             <li className='list-group-item'>Religion: {candidate.religion}</li>
                             <li className='list-group-item'>Birth Place: {candidate.memberOfResident}</li>
                             <li className='list-group-item'>Participated in: {candidate?.participatedElections?.join()}</li>
+                            <li className='list-group-item'>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi natus optio eligendi obcaecati maiores in aperiam nam molestiae quidem, debitis ipsa tempore ad illum ex expedita similique mollitia fuga dolore, accusantium neque atque perferendis. Nesciunt dolores consequatur voluptate quia expedita a, sint quaerat architecto excepturi, quae quam deserunt cumque vel?</p>
+                            </li>
                         </ul>
+
                     </div>
                 </Col>
             </Row>

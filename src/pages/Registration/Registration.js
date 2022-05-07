@@ -35,7 +35,7 @@ const Registration = () => {
                     <Button variant='success'>ফরমের নমুনা (বাংলা)</Button>
                 </Link>
             </div>
-        </Container>
+        </Container >
     );
 };
 

@@ -2,9 +2,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Spinner } from 'react-bootstrap';
 import Navigation from './pages/Navigation/Navigation';
 import Homepage from './pages/Homepage/Homepage';
 import Footer from './pages/Footer/Footer';
@@ -27,6 +26,8 @@ import Vote from './pages/Vote/Vote';
 import Result from './pages/Result/Result';
 import CandidateDetails from './pages/CandidateDetails/CandidateDetails';
 import NotFound from './pages/NotFound/NotFound';
+import FaceVerification from './pages/FaceVerification/FaceVerification';
+import Profile from './pages/Profile/Profile';
 
 
 function App() {
@@ -95,6 +96,12 @@ function App() {
           </Route>
           <Route path='/login'>
             <Login />
+          </Route>
+          <Route path='/verification'>
+            <FaceVerification></FaceVerification>
+          </Route>
+          <Route path='/profile'>
+            <Profile></Profile>
           </Route>
           <Route path='*'>
             <NotFound />

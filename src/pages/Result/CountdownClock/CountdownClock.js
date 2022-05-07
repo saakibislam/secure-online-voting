@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 
-const CountdownTimer = () => {
+const CountdownClock = () => {
     const [timerDays, setTimerDays] = useState('00');
     const [timerHours, setTimerHours] = useState('00');
     const [timerMinutes, setTimerMinutes] = useState('00');
@@ -10,7 +10,7 @@ const CountdownTimer = () => {
     let interval;
 
     const startTimer = () => {
-        const countdownDate = new Date('July 22 2022 00:00:00').getTime();
+        const countdownDate = new Date('May 30 2022 00:00:00').getTime();
 
         interval = setInterval(() => {
             const now = new Date().getTime();
@@ -41,37 +41,33 @@ const CountdownTimer = () => {
             clearInterval(interval);
         }
     }, [])
-
     return (
-        <div style={{ backgroundColor: 'teal', color: 'white', padding: '3em 0' }}>
-            <Container>
-                {/* Icon & Title Section  */}
+        <Container>
+            {/* Icon & Title Section  */}
+            <div>
+                <h2>Voting will be closed in</h2>
+            </div >
+            {/* Timer Countdown Section  */}
+            <div className="d-md-flex justify-content-evenly py-3" >
                 <div>
-                    <i className="fas fa-vote-yea fa-7x mb-2"></i>
-                    <p className='display-5'>Upcoming election</p>
-                </div >
-                {/* Timer Countdown Section  */}
-                <div className="d-md-flex justify-content-evenly p-5" >
-                    <div>
-                        <p className='fs-1'>{timerDays}</p>
-                        <p className='fs-5'>Days</p>
-                    </div>
-                    <div>
-                        <p className='fs-1'>{timerHours}</p>
-                        <p className='fs-5'>Hours</p>
-                    </div>
-                    <div>
-                        <p className='fs-1'>{timerMinutes}</p>
-                        <p className='fs-5'>Minutes</p>
-                    </div>
-                    <div>
-                        <p className="fs-1">{timerSeconds}</p>
-                        <p className='fs-5'>Seconds</p>
-                    </div>
+                    <p className='fs-4 text-danger fw-bold'>{timerDays}</p>
+                    <p>Days</p>
                 </div>
-            </Container >
-        </div>
+                <div>
+                    <p className='fs-4 text-danger fw-bold'>{timerHours}</p>
+                    <p>Hours</p>
+                </div>
+                <div>
+                    <p className='fs-4 text-danger fw-bold'>{timerMinutes}</p>
+                    <p>Minutes</p>
+                </div>
+                <div>
+                    <p className="fs-4 text-danger fw-bold">{timerSeconds}</p>
+                    <p>Seconds</p>
+                </div>
+            </div>
+        </Container>
     );
 };
 
-export default CountdownTimer;
+export default CountdownClock;
