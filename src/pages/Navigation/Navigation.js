@@ -34,7 +34,7 @@ const Navigation = () => {
                         <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
                         <Nav.Link as={NavLink} to="/about">About</Nav.Link>
                         {user?.name && <Nav.Link as={Link} to="/vote">Cast Vote</Nav.Link>}
-                        <Nav.Link as={NavLink} to="/result">Result</Nav.Link>
+                        {user?.role !== 'admin' && <Nav.Link as={NavLink} to="/result">Result</Nav.Link>}
                     </Nav>
 
 

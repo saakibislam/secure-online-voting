@@ -55,12 +55,12 @@ const BarChart = (props) => {
             }
         }
     };
-    const labels = candidates.map(candidate => candidate.name)
+    const labels = candidates?.map(candidate => candidate.name)
     const data = {
         labels,
         datasets: [
             {
-                data: candidates.map((candidate) => Math.round((candidate.voteCount / 100000) * 100)),
+                data: candidates?.map((candidate) => Math.round((candidate.voteCount / 100000) * 100)),
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             }
         ]

@@ -3,7 +3,7 @@ import CountUp from 'react-countup';
 
 const VoteCard = (props) => {
     return (
-        <div className="col-lg-3 col-md-6">
+        <div className="col-xs-12 col-lg-3 col-md-6">
             <div className="card shadow-sm mb-4">
                 <div className="card-body d-flex justify-content-around">
                     <div>

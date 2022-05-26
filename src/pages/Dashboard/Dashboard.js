@@ -1,86 +1,88 @@
-import React from 'react'
-import { Badge, Col, Row } from 'react-bootstrap'
-import { Route } from 'react-router-dom'
-import { useRouteMatch } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
-import { Switch } from 'react-router-dom'
-import DashboardHome from './DashboardHome/DashboardHome'
-import ManageCandidates from './ManageCandidates/ManageCandidates'
-import ManageParties from './ManageParties/ManageParties'
-import ManageVoters from './ManageVoters/ManageVoters'
+import React, { useState, useEffect } from 'react'
+import {
+    CDBSidebar,
+    CDBSidebarContent,
+    CDBSidebarHeader,
+    CDBSidebarMenu,
+    CDBSidebarMenuItem
+} from "cdbreact";
+import { Switch, Route, useRouteMatch, NavLink } from 'react-router-dom';
+import DashboardHome from './DashboardHome/DashboardHome';
+import ManageVoters from './ManageVoters/ManageVoters';
+import ManageCandidates from './ManageCandidates/ManageCandidates';
 
 const Dashboard = () => {
-    const { path, url } = useRouteMatch();
-    return (
-        <div>
-            <Row>
-                {/* Dashboard Navigation  */}
-                <Col className='my-5' xs={3}>
-                    <div className='sidebar-content'>
-                        <NavLink
-                            style={{
-                                color: 'inherit',
-                                display: 'block',
-                                marginTop: '10px',
-                                fontSize: '1.1em',
-                            }}
-                            to={`${url}`}>
-                            Dashboard
-                        </NavLink>
-                        <NavLink
-                            activeStyle={{ backgroundColor: 'orange', padding: '10px', fontWeight: '500', borderTopRightRadius: '30px', borderBottomRightRadius: '30px' }}
-                            style={{
-                                color: 'inherit',
-                                display: 'block',
-                                marginTop: '10px',
-                                fontSize: '1.1em',
-                            }}
-                            to={`${url}/manageVoters`}>
-                            Manage Voters
-                        </NavLink>
-                        <NavLink
-                            activeStyle={{ backgroundColor: 'orange', padding: '10px', fontWeight: '500', borderTopRightRadius: '30px', borderBottomRightRadius: '30px' }}
-                            style={{
-                                color: 'inherit',
-                                display: 'block',
-                                marginTop: '10px',
-                                fontSize: '1.1em',
-                            }}
-                            to={`${url}/manageParties`}>
-                            Manage Parties
-                        </NavLink>
-                        <NavLink
-                            activeStyle={{ backgroundColor: 'orange', padding: '10px', fontWeight: '500', borderTopRightRadius: '30px', borderBottomRightRadius: '30px' }}
-                            style={{
-                                color: 'inherit',
-                                display: 'block',
-                                marginTop: '10px',
-                                fontSize: '1.1em',
-                            }}
-                            to={`${url}/manageCandidates`}>
-                            Manage Candidates
-                        </NavLink>
-                    </div>
+    let { path, url } = useRouteMatch();
+    const [candidates, setCandidates] = useState()
 
-                </Col>
-                {/* Dashboard Render Panel  */}
-                <Col xs={9}>
-                    <Switch>
-                        <Route exact path={path}>
-                            <DashboardHome></DashboardHome>
-                        </Route>
-                        <Route path={`${path}/manageVoters`}>
-                            <ManageVoters></ManageVoters>
-                        </Route>
-                        <Route path={`${path}/manageCandidates`}>
-                            <ManageCandidates></ManageCandidates>
-                        </Route>
-                        <Route path={`${path}/manageParties`}>
-                            <ManageParties></ManageParties>
-                        </Route>
-                    </Switch>
-                </Col>
-            </Row>
+    useEffect(() => {
+        let isMounted = true;
+        fetch('http://localhost:5000/candidates')
+            .then(res => res.json())
+            .then(data => {
+                if (isMounted) {
+                    setCandidates(data)
+                }
+            })
+        return () => {
+            isMounted = false;
+        }
+    }, [])
+    return (
+        <div style={{ display: "flex", overflow: "scroll initial" }}>
+            <div>
+                <CDBSidebar textColor="#fff" backgroundColor="rgb(33, 37, 41)">
+                    <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large m-1"></i>}>
+                    </CDBSidebarHeader>
+
+                    <CDBSidebarContent>
+                        <CDBSidebarMenu>
+                            <CDBSidebarMenuItem>
+                                <NavLink
+                                    to={`${url}`}
+                                >
+                                    <i className="fas fa-th-large m-1"></i>
+                                    Dashboard
+                                </NavLink>
+                            </CDBSidebarMenuItem>
+                            <CDBSidebarMenuItem>
+                                <NavLink
+                                    to={`${url}/manageVoters`}
+                                    activeStyle={{ color: 'orange', fontWeight: 'bold', fontSize: '18px' }}
+                                >
+                                    <i className="fas fa-users m-1"></i>
+                                    Manage Voters
+                                </NavLink>
+                            </CDBSidebarMenuItem>
+                            <CDBSidebarMenuItem>
+                                <NavLink
+                                    to={`${url}/manageCandidates`}
+                                    activeStyle={{ color: 'orange', fontWeight: 'bold', fontSize: '18px' }}
+                                >
+                                    <i className="far fa-address-card m-1"></i>
+                                    Manage Candidates
+                                </NavLink>
+                            </CDBSidebarMenuItem>
+                        </CDBSidebarMenu>
+                    </CDBSidebarContent>
+                </CDBSidebar>
+            </div>
+            <div className='w-100 p-md-5'>
+                <Switch>
+                    <Route exact path={path}>
+                        <DashboardHome candidates={candidates}></DashboardHome>
+                    </Route>
+                    <Route path={`${path}/manageVoters`}>
+                        <ManageVoters></ManageVoters>
+                    </Route>
+                    <Route path={`${path}/manageCandidates`}>
+                        <ManageCandidates
+                            candidates={candidates}
+                            setCandidates={setCandidates}
+                        ></ManageCandidates>
+                    </Route>
+                </Switch>
+            </div>
         </div>
     )
 }

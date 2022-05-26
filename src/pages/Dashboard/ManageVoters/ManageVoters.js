@@ -59,7 +59,9 @@ const ManageVoters = () => {
                 body: JSON.stringify(registerData)
             })
                 .then(res => res.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    document.getElementsByTagName('form')[1].reset();
+                })
                 .catch(error => console.error(error))
         }
     }
@@ -83,7 +85,7 @@ const ManageVoters = () => {
     }
 
     return (
-        <div className='py-5'>
+        <div>
             <h4 className='mb-3'>Manage Voters</h4>
 
             {/* Query Fail Notification Toast */}
@@ -99,12 +101,13 @@ const ManageVoters = () => {
 
             {/* Search Container  */}
             <Row>
-                <Col md lg={6} className="mx-auto py-2">
+                <Col md lg={4} className="mx-auto py-2">
                     <Form.Label>Search for voter using nid number</Form.Label>
-                    <Form.Control type="text" ref={searchRef} placeholder="123456789" />
+                    <Form.Control type="number" ref={searchRef} placeholder="e.g.: 123456789" />
                     <Button
                         onClick={handleSearchSubmit}
                         className='btn btn-info mt-3'>
+                        <i className="fas fa-search me-1"></i>
                         Find
                     </Button>
                 </Col>
@@ -130,6 +133,7 @@ const ManageVoters = () => {
                 <Button variant="success"
                     className='m-1'
                     onClick={handleShow}>
+                    <i className="fas fa-user-plus me-1"></i>
                     Register Voter
                 </Button>
             </div>
@@ -223,7 +227,7 @@ const ManageVoters = () => {
                             <Row>
                                 <Col>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Control name="nidNumber" onBlur={handleOnBlur} type="text" placeholder="NID Number" required />
+                                        <Form.Control name="nidNumber" onBlur={handleOnBlur} type="number" placeholder="NID Number" required />
                                     </Form.Group>
                                 </Col>
                                 <Col>

@@ -1,14 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Table, Tooltip, OverlayTrigger, Modal, Row, Col, Form } from 'react-bootstrap'
+import React, { useState, useEffect, useRef } from 'react'
+import { Button, Table, Tooltip, OverlayTrigger, Modal, Row, Col, Form, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const ManageCandidates = () => {
-    const [candidates, setCandidates] = useState()
+const ManageCandidates = (props) => {
+    const { candidates, setCandidates } = props;
     const [candidateData, setCandidateData] = useState({});
+    const [addSuccess, setAddSuccess] = useState(false);
+    const [deleteSuccess, setDeleteSuccess] = useState(false);
     const [show, setShow] = useState(false);
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const deleteRef = useRef();
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false)
+        setAddSuccess(false)
+    };
     const handleShow = () => setShow(true);
+    const handleDeleteModalClose = () => {
+        setDeleteModalShow(false)
+        setDeleteSuccess(false)
+    }
+    const handleDeleteModalShow = () => setDeleteModalShow(true)
 
     useEffect(() => {
         let isMounted = true;
@@ -79,22 +91,46 @@ const ManageCandidates = () => {
             .then(data => {
                 if (data.acknowledged) {
                     document.getElementsByTagName('form')[0].reset()
+                    setAddSuccess(true)
+                }
+            })
+            .catch(error => console.error(error))
+    }
+
+    const handleDeleteSubmit = () => {
+        const deleteId = deleteRef.current.value;
+        fetch(`http://localhost:5000/candidate?deleteId=${deleteId}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    setDeleteSuccess(true)
                 }
             })
             .catch(error => console.error(error))
     }
 
     return (
-        <div className='py-5 pe-4'>
+        <div>
             <h4 className='mb-3'>Manage Candidates</h4>
-            {/* Candidate Register Button  */}
-            <Button
-                className='d-block ms-auto my-2'
-                variant='outline-success'
-                onClick={handleShow}
-            >
-                Add more candidates
-            </Button>
+            {/* Candidate Register & Delete Button  */}
+            <div className='d-flex justify-content-end my-3'>
+                <Button
+                    className='mx-1'
+                    variant='outline-warning'
+                    onClick={handleDeleteModalShow}
+                >
+                    <i className="fas fa-user-minus me-1"></i>
+                    Delete Candidate
+                </Button>
+                <Button
+                    className='mx-1'
+                    variant='outline-success'
+                    onClick={handleShow}
+                >
+                    <i className="fas fa-user-plus me-1"></i>
+                    Add More Candidates
+                </Button>
+            </div>
 
             {/* Candidates Table  */}
             <div>
@@ -173,6 +209,7 @@ const ManageCandidates = () => {
                     <Modal.Title className='mx-auto'>Register New Candidates</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {addSuccess && <Alert variant="success" className='text-center'>Successfully Added!</Alert>}
                     <Form onSubmit={handleOnSubmit}>
                         <Row>
                             <Col>
@@ -264,6 +301,39 @@ const ManageCandidates = () => {
                         </div>
                     </Form>
                 </Modal.Body>
+            </Modal>
+
+            {/* Delete Candidate Modal  */}
+            <Modal
+                show={deleteModalShow}
+                keyboard={false}
+            >
+                <Modal.Header>
+                    <Modal.Title className='mx-auto'>Remove Candidate</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {deleteSuccess && <Alert variant='success' className='text-center'>Successfully Deleted!</Alert>}
+                    <Form.Label>Select candidate to remove</Form.Label>
+                    <Form.Select ref={deleteRef} aria-label="Default select example">
+                        {
+                            candidates?.map(candidate => <option key={candidate._id} value={candidate._id}>{candidate?.name}</option>)
+                        }
+                    </Form.Select>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="secondary"
+                        onClick={handleDeleteModalClose}
+                    >
+                        Close
+                    </Button>
+                    <Button
+                        variant="danger"
+                        onClick={handleDeleteSubmit}
+                    >
+                        Remove
+                    </Button>
+                </Modal.Footer>
             </Modal>
         </div >
     )
