@@ -10,7 +10,7 @@ const CountdownClock = () => {
     let interval;
 
     const startTimer = () => {
-        const countdownDate = new Date('May 30 2022 00:00:00').getTime();
+        const countdownDate = new Date('May 30 2022 23:59:59').getTime();
 
         interval = setInterval(() => {
             const now = new Date().getTime();
@@ -41,6 +41,7 @@ const CountdownClock = () => {
             clearInterval(interval);
         }
     }, [])
+
     return (
         <Container>
             {/* Icon & Title Section  */}

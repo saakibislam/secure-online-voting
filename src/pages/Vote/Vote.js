@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Spinner } from 'react-bootstrap';
+import { Container, Alert } from 'react-bootstrap';
 import CandidateCard from './CandidateCard/CandidateCard';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
@@ -9,25 +9,32 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./Vote.css";
+import useAuth from '../../hooks/useAuth';
 
 
 const Vote = () => {
     const [candidates, setCandidates] = useState([]);
+    const [user, setUser] = useState();
+    const { getUser } = useAuth();
 
 
     useEffect(() => {
+        setUser(getUser())
         fetch('http://localhost:5000/candidates')
             .then(res => res.json())
-            .then(data => setCandidates(data))
-            .catch((error) => console.log(error))
-    }, [])
+            .then(data => {
+                const newData = data.filter(cd => cd.approved === true)
+                setCandidates(newData);
+            })
+            .catch((error) => console.error(error))
+    }, [candidates])
 
     return (
         <Container className='my-3'>
             <h2>Vote Now</h2>
 
             {/* Alert Box  */}
-
+            {user?.voted && <Alert className='w-50 mx-auto' variant='success'>You have voted successfully.</Alert>}
 
             <Swiper
                 data-aos="fade-up"

@@ -1,0 +1,18 @@
+{
+    "nidNumber": 123456,
+    "img": "https://i.ibb.co/Xpn8wdx/user-Image.png",
+    "name": "admin",
+    "fathersName": "adminFather",
+    "mothersName": "adminMother",
+    "birthDate": "1981-02-28",
+    "gender": "Male",
+    "religion": "Islam",
+    "bloodGroup": "O-",
+    "address": {
+        "thana": "Rajnagar",
+        "district": "Maulvibazar",
+        "division": "Sylhet"
+    },
+    "voted": false,
+    "role": "admin"
+}

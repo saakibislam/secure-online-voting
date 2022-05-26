@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import useAuth from '../../../hooks/useAuth';
 
 const ConfirmationModal = ({ _id, user, setUser, name, show, handleClose }) => {
     const { fetchUser, getUser } = useAuth();
-    const [confirmation, setConfirmation] = useState(false)
 
-    if (confirmation) {
+    const handleVoteSubmission = () => {
         const voterData = {
             candidateId: _id,
             voterId: user._id
@@ -24,10 +23,9 @@ const ConfirmationModal = ({ _id, user, setUser, name, show, handleClose }) => {
                 if (data === 200) {
                     fetchUser(user.nidNumber)
                     setUser(getUser())
-                    setConfirmation(false)
                     setTimeout(() => {
                         window.location.reload();
-                    }, 2000);
+                    }, 4000);
                 }
             })
     }
@@ -48,15 +46,17 @@ const ConfirmationModal = ({ _id, user, setUser, name, show, handleClose }) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={() => {
-                        setConfirmation(false)
                         handleClose()
                     }}>
                         No
                     </Button>
+
                     <Button variant="success" onClick={() => {
-                        setConfirmation(true)
+                        handleVoteSubmission()
                         handleClose()
-                    }}>Yes</Button>
+                    }}>
+                        Yes
+                    </Button>
                 </Modal.Footer>
             </Modal>
 

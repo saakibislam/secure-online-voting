@@ -28,6 +28,7 @@ import CandidateDetails from './pages/CandidateDetails/CandidateDetails';
 import NotFound from './pages/NotFound/NotFound';
 import FaceVerification from './pages/FaceVerification/FaceVerification';
 import Profile from './pages/Profile/Profile';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 
 function App() {
@@ -102,6 +103,9 @@ function App() {
           </Route>
           <Route path='/profile'>
             <Profile></Profile>
+          </Route>
+          <Route path='/dashboard'>
+            <Dashboard></Dashboard>
           </Route>
           <Route path='*'>
             <NotFound />

@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
-import { Container, Form, FloatingLabel, Button, Spinner, Alert } from 'react-bootstrap';
+import { Container, Form, FloatingLabel, Spinner, Alert } from 'react-bootstrap';
 import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
     const nidRef = useRef();
-    const { loginWithNid, clearUser, isLoading, isInvalid } = useAuth();
+    const { loginWithNid, isLoading, isInvalid, isSuccess } = useAuth();
 
     const handleOnSubmit = async e => {
         e.preventDefault();
@@ -22,9 +22,11 @@ const Login = () => {
             </Spinner>}
 
             {/* Login Form  */}
-            <Form className='mx-auto my-3 w-25' onSubmit={handleOnSubmit}>
+            <Form className='mx-auto my-3 shadow-lg' style={{ padding: '1.5em', width: '30vw' }} onSubmit={handleOnSubmit}>
                 {/* Login Failed Alert  */}
                 {isInvalid && <Alert variant="danger">User Not Found</Alert>}
+                {isSuccess && <Alert variant="success">Login Successful !</Alert>}
+                <img className="w-25 mb-4" src="https://cdn.pixabay.com/photo/2021/07/25/08/03/account-6491185_960_720.png" alt="" />
 
                 <FloatingLabel
                     label="NID Number"
@@ -32,11 +34,10 @@ const Login = () => {
                 >
                     {/* NID Input Field  */}
                     <Form.Control type="text" placeholder="Please enter your NID card number." ref={nidRef} required />
-                    <Form.Text>Please enter your NID card number</Form.Text>
+                    <Form.Text>Please enter your 10 digit NID card number</Form.Text>
                 </FloatingLabel>
-                <input type="submit" value='Login' className='btn btn-lg btn-outline-success' />
+                <input type="submit" value='Login' className='btn btn-lg btn-success' />
             </Form>
-            <Button onClick={clearUser}>Clear</Button>
         </Container>
     );
 };

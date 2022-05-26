@@ -3,6 +3,7 @@ import { useState } from "react";
 const useAuth = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isInvalid, setIsInvalid] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     // Fetching User from DB
     const fetchUser = (nid) => {
@@ -23,6 +24,7 @@ const useAuth = () => {
                 setIsLoading(false);
             })
     }
+    // Use for login
     const loginWithNid = (nid) => {
         setIsLoading(true);
         const url = `http://localhost:5000/login?nid=${nid}`;
@@ -30,12 +32,15 @@ const useAuth = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if (data != null) {
                     updateUserOnStorage(data);
+                    setIsSuccess(true)
                     window.location.replace("http://localhost:8989/")
                     setIsInvalid(false)
                 } else {
                     setIsInvalid(true);
+                    setIsSuccess(false);
                 }
             })
             .catch((error) => {
@@ -80,7 +85,8 @@ const useAuth = () => {
         isLoading,
         setIsLoading,
         loginWithNid,
-        isInvalid
+        isInvalid,
+        isSuccess
     }
 }
 

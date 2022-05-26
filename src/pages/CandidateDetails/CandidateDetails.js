@@ -35,7 +35,7 @@ const CandidateDetails = () => {
                             <li className='list-group-item'>Birth Place: {candidate.memberOfResident}</li>
                             <li className='list-group-item'>Participated in: {candidate?.participatedElections?.join()}</li>
                             <li className='list-group-item'>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi natus optio eligendi obcaecati maiores in aperiam nam molestiae quidem, debitis ipsa tempore ad illum ex expedita similique mollitia fuga dolore, accusantium neque atque perferendis. Nesciunt dolores consequatur voluptate quia expedita a, sint quaerat architecto excepturi, quae quam deserunt cumque vel?</p>
+                                <p>Sheikh Hasina Wazed (Bengali: শেখ হাসিনা ওয়াজেদ, romanized: Shēkh Hasinā), born 28 September 1947, is a Bangladeshi politician who has been serving as the Prime Minister of Bangladesh since January 2009. Hasina is the daughter of Bangladesh's Founding Father and first president, Bangabandhu Sheikh Mujibur Rahman, and the eldest of his five children. She previously served as prime minister from June 1996 to July 2001. She is the longest serving prime minister in the history of Bangladesh, having served for a combined total of over 18 years. As of 7 May 2022, she is the longest serving elected female head of government in history.</p>
                             </li>
                         </ul>
 

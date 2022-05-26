@@ -14,7 +14,7 @@ const Navigation = () => {
     return (
         <Navbar expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="/">Navbar</Navbar.Brand>
+                <Navbar.Brand href="/">SOVS</Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="me-auto">
@@ -28,6 +28,7 @@ const Navigation = () => {
                             <NavDropdown.Item as={NavLink} to="/parties">All Political Parties</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link as={NavLink} to="/registration">Registration</Nav.Link>
+                        {user?.role === 'admin' && <Nav.Link as={NavLink} to="/dashboard">Dashboard</Nav.Link>}
                         <Nav.Link as={NavLink} to="/news">News</Nav.Link>
                         <Nav.Link as={NavLink} to="/photos">Photo Gallery</Nav.Link>
                         <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
