@@ -1,15 +1,18 @@
 import React, { useRef, useState } from 'react'
-import { Button, Col, Container, Form, Toast, Modal, OverlayTrigger, Row, Tooltip, ToastContainer } from 'react-bootstrap'
+import { Button, Col, Container, Form, Toast, Modal, OverlayTrigger, Row, Tooltip, ToastContainer, Spinner } from 'react-bootstrap'
 
 const ManageVoters = () => {
     const [show, setShow] = useState(false);
     const [registerData, setRegisterData] = useState({});
     const [queryResult, setQueryResult] = useState({});
+    const [showSpinner, setShowSpinner] = useState(false);
     const searchRef = useRef();
 
     const [showA, setShowA] = useState(false);
+    const [showB, setShowB] = useState(false);
 
     const toggleShowA = () => setShowA(!showA);
+    const toggleShowB = () => setShowB(!showB);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -25,7 +28,9 @@ const ManageVoters = () => {
     const handleResetVoters = () => {
         fetch('https://secret-brook-82250.herokuapp.com/resetVoters')
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                data.acknowledged ? setShowB(true) : setShowB(false)
+            })
             .catch(error => console.error(error))
     }
 
@@ -37,7 +42,6 @@ const ManageVoters = () => {
         const newRegisterData = { ...registerData };
         newRegisterData[field] = value;
         setRegisterData(newRegisterData);
-        console.log(registerData)
     }
 
     // Form On Submit Functionality
@@ -51,6 +55,7 @@ const ManageVoters = () => {
             alert("Please specify your details")
 
         } else {
+            setShowSpinner(true);
             fetch('https://secret-brook-82250.herokuapp.com/register', {
                 method: 'POST',
                 headers: {
@@ -63,6 +68,7 @@ const ManageVoters = () => {
                     document.getElementsByTagName('form')[1].reset();
                 })
                 .catch(error => console.error(error))
+                .finally(() => setShowSpinner(false))
         }
     }
 
@@ -88,20 +94,31 @@ const ManageVoters = () => {
         <div>
             <h4 className='mb-3'>Manage Voters</h4>
 
-            {/* Query Fail Notification Toast */}
+            {/* Notification Toast Container */}
             <ToastContainer className="p-3" position='top-end'>
+                {/* Search Fail Toast  */}
                 <Toast className='bg-danger text-white' show={showA} onClose={toggleShowA} delay={5000} style={{ position: 'relative', top: '80px' }} autohide>
                     <Toast.Header>
-                        <strong className="me-auto">Query Result</strong>
+                        <strong className="me-auto">Search Result</strong>
                         <small>Just now</small>
                     </Toast.Header>
                     <Toast.Body>User Not Registered</Toast.Body>
+                </Toast>
+
+                Voter Reset Toast
+                <Toast className='bg-danger text-white' show={showB} onClose={toggleShowB} delay={5000} style={{ position: 'relative', top: '80px' }} autohide>
+                    <Toast.Header>
+                        <strong className="me-auto">Voters Status Reset</strong>
+                        <small>Just now</small>
+                    </Toast.Header>
+                    <Toast.Body>All voters are made eligible.</Toast.Body>
                 </Toast>
             </ToastContainer>
 
             {/* Search Container  */}
             <Row>
-                <Col md lg={4} className="mx-auto py-2">
+                <Col md lg={4} className="mx-auto py-2 px-4">
+
                     <Form.Label>Search for voter using nid number</Form.Label>
                     <Form.Control type="number" ref={searchRef} placeholder="e.g.: 123456789" />
                     <Button
@@ -223,40 +240,41 @@ const ManageVoters = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <Container>
+                        {showSpinner && <Spinner className='d-block mx-auto mb-3' variant='primary' animation='border'></Spinner>}
                         <Form onSubmit={handleOnSubmit}>
                             <Row>
-                                <Col>
+                                <Col md={6}>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                         <Form.Control name="nidNumber" onBlur={handleOnBlur} type="number" placeholder="NID Number" required />
                                     </Form.Group>
                                 </Col>
-                                <Col>
+                                <Col md={6}>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                         <Form.Control name="name" onBlur={handleOnBlur} type="text" placeholder="Full Name" required />
                                     </Form.Group>
                                 </Col>
                             </Row>
                             <Row>
-                                <Col>
+                                <Col md={6}>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                         <Form.Control name="fathersName" onBlur={handleOnBlur} type="text" placeholder="Father's Name" required />
                                     </Form.Group>
                                 </Col>
-                                <Col>
+                                <Col md={6}>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                         <Form.Control name="mothersName" onBlur={handleOnBlur} type="text" placeholder="Mother's Name" required />
                                     </Form.Group>
                                 </Col>
                             </Row>
                             <Row>
-                                <Col>
+                                <Col md={6}>
                                     <Form.Select name='gender' onBlur={handleOnBlur} className="mb-3" aria-label="Default select example" required>
                                         <option>Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </Form.Select>
                                 </Col>
-                                <Col>
+                                <Col md={6}>
                                     <Form.Select name="religion" onBlur={handleOnBlur} className="mb-3" aria-label="Default select example" required>
                                         <option>Religion</option>
                                         <option value="Islam">Islam</option>
@@ -265,7 +283,7 @@ const ManageVoters = () => {
                                         <option value="Buddhist">Buddhist</option>
                                     </Form.Select>
                                 </Col>
-                                <Col>
+                                <Col md={6}>
                                     <Form.Select name="bloodGroup" onBlur={handleOnBlur} className="mb-3" aria-label="Default select example" required>
                                         <option>Blood Group</option>
                                         <option value="A+">A+</option>

@@ -1,26 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, Table, Tooltip, OverlayTrigger, Modal, Row, Col, Form, Alert } from 'react-bootstrap'
+import { Button, Table, Tooltip, OverlayTrigger, Modal, Row, Col, Form, Alert, Spinner } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const ManageCandidates = (props) => {
     const { candidates, setCandidates } = props;
     const [candidateData, setCandidateData] = useState({});
-    const [addSuccess, setAddSuccess] = useState(false);
-    const [deleteSuccess, setDeleteSuccess] = useState(false);
     const [show, setShow] = useState(false);
     const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [addSuccess, setAddSuccess] = useState(false);
+    const [deleteSuccess, setDeleteSuccess] = useState(false);
+    const [showSpinner, setShowSpinner] = useState(false);
     const deleteRef = useRef();
 
+    const handleShow = () => setShow(true);
+    const handleDeleteModalShow = () => setDeleteModalShow(true)
     const handleClose = () => {
         setShow(false)
         setAddSuccess(false)
     };
-    const handleShow = () => setShow(true);
     const handleDeleteModalClose = () => {
         setDeleteModalShow(false)
         setDeleteSuccess(false)
     }
-    const handleDeleteModalShow = () => setDeleteModalShow(true)
 
     useEffect(() => {
         let isMounted = true;
@@ -34,8 +35,9 @@ const ManageCandidates = (props) => {
         return () => {
             isMounted = false;
         }
-    }, [])
+    }, [candidates])
 
+    // Candidate Approve / Decline
     const handleOnClick = action => {
         fetch('https://secret-brook-82250.herokuapp.com/candidates', {
             method: 'POST',
@@ -48,6 +50,7 @@ const ManageCandidates = (props) => {
             .then(data => setCandidates(data))
     }
 
+    // Getting input field data on blur
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
@@ -72,8 +75,10 @@ const ManageCandidates = (props) => {
         return result;
     }
 
-    const handleOnSubmit = e => {
+    // Candidate Add
+    const candidateAdd = e => {
         e.preventDefault();
+        setShowSpinner(true);
         var el = document.getElementsByTagName('select')[0];
         const previousElections = getSelectValues(el);
         candidateData.previousElections = previousElections;
@@ -95,9 +100,12 @@ const ManageCandidates = (props) => {
                 }
             })
             .catch(error => console.error(error))
+            .finally(() => setShowSpinner(false))
     }
 
-    const handleDeleteSubmit = () => {
+    // Candidate Delete
+    const deleteCandidate = () => {
+        setShowSpinner(true);
         const deleteId = deleteRef.current.value;
         fetch(`https://secret-brook-82250.herokuapp.com/candidate?deleteId=${deleteId}`)
             .then(res => res.json())
@@ -107,6 +115,7 @@ const ManageCandidates = (props) => {
                 }
             })
             .catch(error => console.error(error))
+            .finally(() => setShowSpinner(false))
     }
 
     return (
@@ -209,16 +218,17 @@ const ManageCandidates = (props) => {
                     <Modal.Title className='mx-auto'>Register New Candidates</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {showSpinner && <Spinner className='d-block mx-auto mb-3' variant="info" animation="grow" />}
                     {addSuccess && <Alert variant="success" className='text-center'>Successfully Added!</Alert>}
-                    <Form onSubmit={handleOnSubmit}>
+                    <Form onSubmit={candidateAdd}>
                         <Row>
-                            <Col>
+                            <Col md={6}>
                                 <Form.Label>Candidate Name</Form.Label>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Control name="name" onBlur={handleOnBlur} type="text" placeholder="Full Name" required />
                                 </Form.Group>
                             </Col>
-                            <Col>
+                            <Col md={6}>
                                 <Form.Label>Candidate Image</Form.Label>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Control name="img" onBlur={handleOnBlur} type="text" placeholder="Image URL" required />
@@ -226,13 +236,13 @@ const ManageCandidates = (props) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col md={6}>
                                 <Form.Label>Father's Name</Form.Label>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Control name="fathersName" onBlur={handleOnBlur} type="text" placeholder="Father's Name" required />
                                 </Form.Group>
                             </Col>
-                            <Col>
+                            <Col md={6}>
                                 <Form.Label>Mother's Name</Form.Label>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Control name="mothersName" onBlur={handleOnBlur} type="text" placeholder="Mother's Name" required />
@@ -260,19 +270,19 @@ const ManageCandidates = (props) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col md={4}>
                                 <Form.Label>Candidate Party</Form.Label>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Control name="party" onBlur={handleOnBlur} type="text" placeholder="e.g. Bangladesh Awami League" required />
                                 </Form.Group>
                             </Col>
-                            <Col>
+                            <Col md={4}>
                                 <Form.Label>Party Symbol</Form.Label>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Control name="symbol" onBlur={handleOnBlur} type="text" placeholder="e.g. Boat" required />
                                 </Form.Group>
                             </Col>
-                            <Col>
+                            <Col md={4}>
                                 <Form.Label>Previous Election</Form.Label>
                                 <Form.Select multiple >
                                     <option value="2008">2008</option>
@@ -292,11 +302,11 @@ const ManageCandidates = (props) => {
                                 Close
                             </Button>
                             <Button
-                                className='m-1'
+                                className='m-1 px-4'
                                 variant="success"
                                 type='submit'
                             >
-                                Understood
+                                Add
                             </Button>
                         </div>
                     </Form>
@@ -312,7 +322,8 @@ const ManageCandidates = (props) => {
                     <Modal.Title className='mx-auto'>Remove Candidate</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {deleteSuccess && <Alert variant='success' className='text-center'>Successfully Deleted!</Alert>}
+                    {showSpinner && <Spinner className='d-block mx-auto mb-3' animation="grow" variant="danger" />}
+                    {deleteSuccess && <Alert variant='danger' className='text-center'>Successfully Deleted!</Alert>}
                     <Form.Label>Select candidate to remove</Form.Label>
                     <Form.Select ref={deleteRef} aria-label="Default select example">
                         {
@@ -329,7 +340,7 @@ const ManageCandidates = (props) => {
                     </Button>
                     <Button
                         variant="danger"
-                        onClick={handleDeleteSubmit}
+                        onClick={deleteCandidate}
                     >
                         Remove
                     </Button>

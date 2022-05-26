@@ -14,6 +14,7 @@ import ManageCandidates from './ManageCandidates/ManageCandidates';
 const Dashboard = () => {
     let { path, url } = useRouteMatch();
     const [candidates, setCandidates] = useState()
+    const [filteredCandidates, setFilteredCandidates] = useState([]);
 
     useEffect(() => {
         let isMounted = true;
@@ -27,7 +28,7 @@ const Dashboard = () => {
         return () => {
             isMounted = false;
         }
-    }, [])
+    }, [candidates])
     return (
         <div style={{ display: "flex", overflow: "scroll initial" }}>
             <div>
@@ -67,7 +68,7 @@ const Dashboard = () => {
                     </CDBSidebarContent>
                 </CDBSidebar>
             </div>
-            <div className='w-100 p-md-5'>
+            <div className='w-100 px-md-5 py-5'>
                 <Switch>
                     <Route exact path={path}>
                         <DashboardHome candidates={candidates}></DashboardHome>

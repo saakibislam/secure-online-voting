@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Container, Form, FloatingLabel, Spinner, Alert } from 'react-bootstrap';
+import { Container, Form, FloatingLabel, Spinner, Alert, Row, Col } from 'react-bootstrap';
 import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
@@ -13,31 +13,43 @@ const Login = () => {
     }
 
     return (
-        <Container className="my-3">
-            <h1>Please Log in</h1>
+        <Container className="py-4">
+            <h2 className='mb-3'>Please Log in</h2>
 
-            {/* Loading Spinner  */}
-            {isLoading && <Spinner animation="border" role="Logging in">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>}
+            <Row className='justify-content-center rounded px-3'>
+                <Col md={6} lg={6} xl={4} className="shadow-lg py-5 px-md-3">
 
-            {/* Login Form  */}
-            <Form className='mx-auto my-3 shadow-lg' style={{ padding: '1.5em', width: '30vw' }} onSubmit={handleOnSubmit}>
-                {/* Login Failed Alert  */}
-                {isInvalid && <Alert variant="danger">User Not Found</Alert>}
-                {isSuccess && <Alert variant="success">Login Successful !</Alert>}
-                <img className="w-25 mb-4" src="https://cdn.pixabay.com/photo/2021/07/25/08/03/account-6491185_960_720.png" alt="" />
+                    {/* Loading Spinner  */}
+                    {isLoading && <Spinner animation="border" className='mb-3' role="Logging in">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>}
 
-                <FloatingLabel
-                    label="NID Number"
-                    className="mb-3"
-                >
-                    {/* NID Input Field  */}
-                    <Form.Control type="number" placeholder="Please enter your NID card number." ref={nidRef} required />
-                    <Form.Text>Please enter your 10 digit NID card number</Form.Text>
-                </FloatingLabel>
-                <input type="submit" value='Login' className='btn btn-lg btn-success' />
-            </Form>
+                    {/* Login Failed Alert  */}
+                    {isInvalid && <Alert variant="danger">
+                        <i className="fas fa-exclamation-triangle fa-lg me-1"></i>
+                        User Not Found
+                    </Alert>}
+                    {isSuccess && <Alert variant="success">
+                        <i className="fas fa-check-circle fa-lg me-1"></i>
+                        Login Successful!
+                    </Alert>}
+
+                    {/* Login Form  */}
+                    <Form onSubmit={handleOnSubmit}>
+                        <i className="fas fa-user-check fa-5x mb-3"></i>
+
+                        <FloatingLabel
+                            label="NID Number"
+                            className="mb-3"
+                        >
+                            {/* NID Input Field  */}
+                            <Form.Control type="number" placeholder="Please enter your NID card number." ref={nidRef} required />
+                            <Form.Text>Please enter your 10 digit NID card number</Form.Text>
+                        </FloatingLabel>
+                        <input type="submit" value='Login' className='w-50 btn btn-lg btn-success' />
+                    </Form>
+                </Col>
+            </Row>
         </Container>
     );
 };
