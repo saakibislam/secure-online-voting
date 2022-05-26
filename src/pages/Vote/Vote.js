@@ -21,12 +21,13 @@ const Vote = () => {
     useEffect(() => {
         setUser(getUser())
         fetch('http://localhost:5000/candidates')
-            .then(res => res.json())
-            .then(data => {
-                const newData = data.filter(cd => cd.approved === true)
+            .then(async res => await res.json())
+            .then(async data => {
+                const newData = await data.filter(cd => cd.approved === true)
                 setCandidates(newData);
             })
             .catch((error) => console.error(error))
+
     }, [candidates])
 
     return (

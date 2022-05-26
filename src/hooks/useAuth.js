@@ -32,11 +32,10 @@ const useAuth = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data != null) {
                     updateUserOnStorage(data);
                     setIsSuccess(true)
-                    window.location.replace("http://localhost:8989/")
+                    // window.location.replace("http://localhost:8989/")
                     setIsInvalid(false)
                 } else {
                     setIsInvalid(true);

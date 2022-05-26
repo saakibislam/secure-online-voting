@@ -14,7 +14,7 @@ const Result = () => {
         fetch('http://localhost:5000/candidates')
             .then(res => res.json())
             .then(data => {
-                setCandidates(data)
+                setCandidates(data.filter(cd => cd.approved === true))
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false))

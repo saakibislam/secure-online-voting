@@ -4,7 +4,6 @@ import { Carousel } from 'react-bootstrap';
 const Slider = () => {
     return (
         <Carousel variant="dark">
-
             <Carousel.Item>
                 <img
                     className="d-block"

@@ -33,7 +33,7 @@ const Login = () => {
                     className="mb-3"
                 >
                     {/* NID Input Field  */}
-                    <Form.Control type="text" placeholder="Please enter your NID card number." ref={nidRef} required />
+                    <Form.Control type="number" placeholder="Please enter your NID card number." ref={nidRef} required />
                     <Form.Text>Please enter your 10 digit NID card number</Form.Text>
                 </FloatingLabel>
                 <input type="submit" value='Login' className='btn btn-lg btn-success' />
