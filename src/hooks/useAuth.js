@@ -35,7 +35,7 @@ const useAuth = () => {
                 if (data != null) {
                     updateUserOnStorage(data);
                     setIsSuccess(true)
-                    // window.location.replace("http://localhost:8989/")
+                    window.location.replace("https://gentle-springs-44939.herokuapp.com/")
                     setIsInvalid(false)
                 } else {
                     setIsInvalid(true);
