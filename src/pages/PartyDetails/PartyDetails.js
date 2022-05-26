@@ -8,7 +8,7 @@ const PartyDetails = () => {
 
     useEffect(() => {
         let isMounted = true;
-        fetch(`http://localhost:5000/party?requestedId=${id}`)
+        fetch(`https://secret-brook-82250.herokuapp.com/party?requestedId=${id}`)
             .then(res => res.json())
             .then(data => {
                 if (isMounted) {

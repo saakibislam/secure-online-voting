@@ -24,7 +24,7 @@ const ManageCandidates = (props) => {
 
     useEffect(() => {
         let isMounted = true;
-        fetch('http://localhost:5000/candidates')
+        fetch('https://secret-brook-82250.herokuapp.com/candidates')
             .then(res => res.json())
             .then(data => {
                 if (isMounted) {
@@ -37,7 +37,7 @@ const ManageCandidates = (props) => {
     }, [])
 
     const handleOnClick = action => {
-        fetch('http://localhost:5000/candidates', {
+        fetch('https://secret-brook-82250.herokuapp.com/candidates', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -80,7 +80,7 @@ const ManageCandidates = (props) => {
         candidateData.approved = false;
         candidateData.voteCount = 0;
 
-        fetch('http://localhost:5000/registerCandidate', {
+        fetch('https://secret-brook-82250.herokuapp.com/registerCandidate', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -99,7 +99,7 @@ const ManageCandidates = (props) => {
 
     const handleDeleteSubmit = () => {
         const deleteId = deleteRef.current.value;
-        fetch(`http://localhost:5000/candidate?deleteId=${deleteId}`)
+        fetch(`https://secret-brook-82250.herokuapp.com/candidate?deleteId=${deleteId}`)
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {

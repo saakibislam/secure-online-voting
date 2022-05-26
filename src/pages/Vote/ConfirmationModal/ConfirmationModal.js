@@ -11,7 +11,7 @@ const ConfirmationModal = ({ _id, user, setUser, name, show, handleClose }) => {
             voterId: user._id
         }
 
-        fetch('http://localhost:5000/vote', {
+        fetch('https://secret-brook-82250.herokuapp.com/vote', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

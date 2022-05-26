@@ -11,7 +11,7 @@ const Result = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/candidates')
+        fetch('https://secret-brook-82250.herokuapp.com/candidates')
             .then(res => res.json())
             .then(data => {
                 setCandidates(data.filter(cd => cd.approved === true))

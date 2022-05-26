@@ -7,7 +7,7 @@ const PhotoGallery = () => {
 
     useEffect(() => {
         let isMounted = true;
-        fetch('http://localhost:5000/photos')
+        fetch('https://secret-brook-82250.herokuapp.com/photos')
             .then(res => res.json())
             .then(data => {
                 if (isMounted) {

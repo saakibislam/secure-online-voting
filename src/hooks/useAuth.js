@@ -8,7 +8,7 @@ const useAuth = () => {
     // Fetching User from DB
     const fetchUser = (nid) => {
         setIsLoading(true);
-        const url = `http://localhost:5000/login?nid=${nid}`;
+        const url = `https://secret-brook-82250.herokuapp.com/login?nid=${nid}`;
 
         fetch(url)
             .then(res => res.json())
@@ -27,7 +27,7 @@ const useAuth = () => {
     // Use for login
     const loginWithNid = (nid) => {
         setIsLoading(true);
-        const url = `http://localhost:5000/login?nid=${nid}`;
+        const url = `https://secret-brook-82250.herokuapp.com/login?nid=${nid}`;
 
         fetch(url)
             .then(res => res.json())

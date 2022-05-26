@@ -20,7 +20,7 @@ const Vote = () => {
 
     useEffect(() => {
         setUser(getUser())
-        fetch('http://localhost:5000/candidates')
+        fetch('https://secret-brook-82250.herokuapp.com/candidates')
             .then(async res => await res.json())
             .then(async data => {
                 const newData = await data.filter(cd => cd.approved === true)

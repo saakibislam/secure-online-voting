@@ -7,7 +7,7 @@ const CandidateDetails = () => {
     const [candidate, setCandidate] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:5000/candidate/${id}`
+        const url = `https://secret-brook-82250.herokuapp.com/candidate/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setCandidate(data))

@@ -23,7 +23,7 @@ const ManageVoters = () => {
 
     // Reset Voter Functionality
     const handleResetVoters = () => {
-        fetch('http://localhost:5000/resetVoters')
+        fetch('https://secret-brook-82250.herokuapp.com/resetVoters')
             .then(res => res.json())
             .then(data => console.log(data))
             .catch(error => console.error(error))
@@ -51,7 +51,7 @@ const ManageVoters = () => {
             alert("Please specify your details")
 
         } else {
-            fetch('http://localhost:5000/register', {
+            fetch('https://secret-brook-82250.herokuapp.com/register', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -69,7 +69,7 @@ const ManageVoters = () => {
     // Search Query Functionality
     const handleSearchSubmit = () => {
         const nidNumber = searchRef.current.value;
-        fetch(`http://localhost:5000/voter?nidNumber=${nidNumber}`)
+        fetch(`https://secret-brook-82250.herokuapp.com/voter?nidNumber=${nidNumber}`)
             .then(res => res.json())
             .then(data => {
                 if (data != null) {

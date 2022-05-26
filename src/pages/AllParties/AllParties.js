@@ -7,7 +7,7 @@ const AllParties = () => {
 
     useEffect(() => {
         let isMounted = true;
-        fetch('http://localhost:5000/parties')
+        fetch('https://secret-brook-82250.herokuapp.com/parties')
             .then(res => res.json())
             .then(data => {
                 if (isMounted) {
