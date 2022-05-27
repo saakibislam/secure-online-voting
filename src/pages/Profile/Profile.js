@@ -12,7 +12,7 @@ const Profile = () => {
 
     return (
         <Container className='my-3'>
-            <h2>Your Profile</h2>
+            <h3 className='mb-3'>Your Profile</h3>
             <Row>
                 <Col sm={12} md={2} lg={2}>
                     <img className='img-fluid' src={user?.img} alt="" />

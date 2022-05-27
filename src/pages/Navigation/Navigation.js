@@ -44,7 +44,7 @@ const Navigation = () => {
                     {user?.name ? <div>
                         <Navbar.Text className='me-2'>
                             Signed in as: <Link to='/profile'>
-                                {user?.name}
+                                {user?.name?.split(' ')[0]}
                             </Link>
                         </Navbar.Text>
                         <Button
