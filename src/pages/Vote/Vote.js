@@ -19,7 +19,7 @@ const Vote = () => {
 
 
     useEffect(() => {
-        setUser(getUser())
+        setUser(getUser)
         fetch('https://secret-brook-82250.herokuapp.com/candidates')
             .then(async res => await res.json())
             .then(async data => {

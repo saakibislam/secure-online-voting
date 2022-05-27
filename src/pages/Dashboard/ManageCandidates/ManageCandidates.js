@@ -60,28 +60,10 @@ const ManageCandidates = (props) => {
         setCandidateData(newCandidateData)
     }
 
-    const getSelectValues = select => {
-        var result = [];
-        var options = select && select.options;
-        var opt;
-
-        for (var i = 0, iLen = options.length; i < iLen; i++) {
-            opt = options[i];
-
-            if (opt.selected) {
-                result.push(opt.value || opt.text);
-            }
-        }
-        return result;
-    }
-
     // Candidate Add
     const candidateAdd = e => {
         e.preventDefault();
         setShowSpinner(true);
-        var el = document.getElementsByTagName('select')[0];
-        const previousElections = getSelectValues(el);
-        candidateData.previousElections = previousElections;
         candidateData.approved = false;
         candidateData.voteCount = 0;
 
@@ -284,7 +266,8 @@ const ManageCandidates = (props) => {
                             </Col>
                             <Col md={4}>
                                 <Form.Label>Previous Election</Form.Label>
-                                <Form.Select multiple >
+                                <Form.Select name="participatedElections" onBlur={handleOnBlur}>
+                                    <option value="None">None</option>
                                     <option value="2008">2008</option>
                                     <option value="2012">2012</option>
                                     <option value="2016">2016</option>

@@ -7,9 +7,20 @@ const VoteCard = (props) => {
             <div className="card shadow-sm mb-4">
                 <div className="card-body d-flex justify-content-around">
                     <div>
-                        <h4>{props.candidate.name}</h4>
-                        <h5><i className="fas fa-angle-double-up me-1 text-success"></i>
-                            <CountUp className='text-success fw-bold' end={props.candidate.voteCount} start={0} duration={3} separator=","></CountUp>
+                        <h5>{props.candidate.name}</h5>
+                        <h5>
+                            {props.candidate.approved === false ?
+                                <span className='text-success'>Pending</span>
+                                :
+                                <>
+                                    <i className="fas fa-angle-double-up me-1 text-success"></i>
+                                    <CountUp
+                                        className='text-success fw-bold'
+                                        end={props.candidate.voteCount}
+                                        start={0}
+                                        duration={3}
+                                        separator=",">
+                                    </CountUp></>}
                         </h5>
                     </div>
                     <div>
