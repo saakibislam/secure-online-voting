@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import { Col, Row } from 'react-bootstrap'
+import CountdownClock from '../../Result/CountdownClock/CountdownClock'
 import DoughnutChart from '../../Result/DoughnutChart/DoughnutChart'
 import VoteCard from '../../Result/VoteCard/VoteCard'
 const BarChart = React.lazy(() => import('../../Result/BarChart/BarChart'))
@@ -10,6 +11,8 @@ const DashboardHome = (props) => {
 
     return (
         <div>
+            <h4>Remaining time of poll</h4>
+            <CountdownClock></CountdownClock>
             <Row className='my-3'>
                 {candidates?.map(candidate => <VoteCard
                     key={candidate._id}

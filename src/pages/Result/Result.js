@@ -23,6 +23,7 @@ const Result = () => {
 
     return (
         <Container className="my-3">
+            <h3>Voting will be closed in</h3>
             <CountdownClock></CountdownClock>
 
             {isLoading ?

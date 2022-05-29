@@ -10,7 +10,7 @@ const CountdownClock = () => {
     let interval;
 
     const startTimer = () => {
-        const countdownDate = new Date('May 30 2022 23:59:59').getTime();
+        const countdownDate = new Date('June 11 2022 23:59:59').getTime();
 
         interval = setInterval(() => {
             const now = new Date().getTime();
@@ -44,10 +44,7 @@ const CountdownClock = () => {
 
     return (
         <Container>
-            {/* Icon & Title Section  */}
-            <div>
-                <h2>Voting will be closed in</h2>
-            </div >
+
             {/* Timer Countdown Section  */}
             <div className="d-md-flex justify-content-evenly py-3" >
                 <div>

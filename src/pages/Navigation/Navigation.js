@@ -22,7 +22,6 @@ const Navigation = () => {
                         <NavDropdown
                             id="nav-dropdown-dark-example"
                             title="Political Parties"
-                            menuVariant="dark"
                         >
                             <NavDropdown.Item as={NavLink} to="/registered">Registered Parties</NavDropdown.Item>
                             <NavDropdown.Item as={NavLink} to="/parties">All Political Parties</NavDropdown.Item>
