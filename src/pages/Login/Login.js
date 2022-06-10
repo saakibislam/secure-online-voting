@@ -44,7 +44,8 @@ const Login = () => {
                         >
                             {/* NID Input Field  */}
                             <Form.Control type="number" placeholder="Please enter your NID card number." ref={nidRef} required />
-                            <Form.Text>Please enter your 10 digit NID card number</Form.Text>
+                            <Form.Text>Please enter your 10 digit NID card number.</Form.Text>
+                            <Form.Text>Use 123456 if you are a visitor.</Form.Text>
                         </FloatingLabel>
                         <input type="submit" value='Login' className='w-50 btn btn-lg btn-success' />
                     </Form>

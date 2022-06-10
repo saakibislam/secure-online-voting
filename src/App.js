@@ -26,7 +26,6 @@ import Vote from './pages/Vote/Vote';
 import Result from './pages/Result/Result';
 import CandidateDetails from './pages/CandidateDetails/CandidateDetails';
 import NotFound from './pages/NotFound/NotFound';
-import FaceVerification from './pages/FaceVerification/FaceVerification';
 import Profile from './pages/Profile/Profile';
 import Dashboard from './pages/Dashboard/Dashboard';
 
@@ -97,9 +96,6 @@ function App() {
           </Route>
           <Route path='/login'>
             <Login />
-          </Route>
-          <Route path='/verification'>
-            <FaceVerification></FaceVerification>
           </Route>
           <Route path='/profile'>
             <Profile></Profile>

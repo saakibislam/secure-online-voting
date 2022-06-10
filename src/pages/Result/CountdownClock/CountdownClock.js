@@ -10,7 +10,7 @@ const CountdownClock = () => {
     let interval;
 
     const startTimer = () => {
-        const countdownDate = new Date('June 11 2022 23:59:59').getTime();
+        const countdownDate = new Date('June 22 2022 23:59:59').getTime();
 
         interval = setInterval(() => {
             const now = new Date().getTime();

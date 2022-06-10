@@ -35,8 +35,12 @@ const useAuth = () => {
                 if (data != null) {
                     updateUserOnStorage(data);
                     setIsSuccess(true)
-                    window.location.replace("https://gentle-springs-44939.herokuapp.com/")
                     setIsInvalid(false)
+                    if (nid !== '123456' && nid !== '1020304050') {
+                        window.location.replace("https://gentle-springs-44939.herokuapp.com/")
+                    } else {
+                        window.location.replace("/");
+                    }
                 } else {
                     setIsInvalid(true);
                     setIsSuccess(false);

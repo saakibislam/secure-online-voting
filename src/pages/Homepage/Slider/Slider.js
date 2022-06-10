@@ -1,14 +1,18 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
+import slide1 from '../../../images/slide1.jpg';
+import slide2 from '../../../images/slide2.jpg';
+import slide3 from '../../../images/slide3.jpg';
+import slide4 from '../../../images/slide4.jpg';
 
 const Slider = () => {
     return (
-        <Carousel variant="dark">
+        <Carousel variant="dark" fade>
             <Carousel.Item>
                 <img
                     className="d-block"
                     style={{ width: '100vw', height: '95vh' }}
-                    src='https://media.gettyimages.com/photos/national-parliament-bangladesh-picture-id158261506'
+                    src={slide1}
                     alt="First slide"
                 />
             </Carousel.Item>
@@ -16,7 +20,7 @@ const Slider = () => {
                 <img
                     className="d-block"
                     style={{ width: '100vw', height: '95vh' }}
-                    src='https://media.gettyimages.com/photos/this-picture-shows-the-front-pages-of-bangladeshi-morning-national-picture-id84141171'
+                    src={slide2}
                     alt="Second slide"
                 />
             </Carousel.Item>
@@ -24,7 +28,7 @@ const Slider = () => {
                 <img
                     className="d-block"
                     style={{ width: '100vw', height: '95vh' }}
-                    src='https://media.gettyimages.com/photos/sheikh-hasina-wajed-is-sworn-in-for-her-second-spell-as-bangladeshs-picture-id84183136'
+                    src={slide3}
                     alt="Third slide"
                 />
             </Carousel.Item>
@@ -32,7 +36,7 @@ const Slider = () => {
                 <img
                     className="d-block"
                     style={{ width: '100vw', height: '95vh' }}
-                    src='https://media.gettyimages.com/photos/ballot-box-seen-for-counting-after-voting-ended-at-a-polling-station-picture-id1075860270'
+                    src={slide4}
                     alt="Fourth slide"
                 />
             </Carousel.Item>

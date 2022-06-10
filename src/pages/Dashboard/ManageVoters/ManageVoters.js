@@ -105,7 +105,7 @@ const ManageVoters = () => {
                     <Toast.Body>User Not Registered</Toast.Body>
                 </Toast>
 
-                Voter Reset Toast
+                {/* Voter Reset Toast */}
                 <Toast className='bg-danger text-white' show={showB} onClose={toggleShowB} delay={5000} style={{ position: 'relative', top: '80px' }} autohide>
                     <Toast.Header>
                         <strong className="me-auto">Voters Status Reset</strong>
